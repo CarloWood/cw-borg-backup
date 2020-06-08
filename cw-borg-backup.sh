@@ -53,7 +53,7 @@ echo "Making backup using config $CONFIG_FILE"
 
 for archive in $(find /etc/borg-backup/archives -follow -mindepth 1 -maxdepth 1 -type d -printf '%f\n'); do
   echo "Backing up $archive..."
-  /usr/bin/borg --progress create --dry-run --list --noatime --exclude-caches \
+  /usr/bin/borg create --noatime --exclude-caches \
     --patterns-from /etc/borg-backup/archives/$archive/patterns \
     "::$HOSTNAME-$archive-{now:%Y%m%d-%H%M%S}"
 done
