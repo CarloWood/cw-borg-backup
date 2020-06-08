@@ -1,0 +1,14 @@
+# This oneshot service is supposed to be fired by cw-borg-backup.timer.
+# As a test, it can be started directly of course.
+
+[Unit]
+Description=Perform incremental backup with borg.
+# Email the output of `systemctl status --full ` when cw-borg-backup.sh returns a non-zero exit code.
+OnFailure=failure_status_email_carlo@%n.service
+# Make sure the file system where we backup resides is mounted.
+Requires=opt-verylarge.service
+After=opt-verylarge.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/src/borg/cw-borg-backup/cw-borg-backup.sh

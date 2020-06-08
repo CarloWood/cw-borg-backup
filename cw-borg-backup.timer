@@ -1,0 +1,10 @@
+[Unit]
+Description=Run cw-borg-backup.service daily.
+
+[Timer]
+OnCalendar=07:00
+AccuracySec=30m
+Persistent=yes
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,33 @@
+# See https://borgbackup.readthedocs.io/en/stable/usage/general.html#repository-urls
+# Do not use a mount point for this; that would cause a new Borg Backup repository
+# to be created if for some reason the file system isn't mounted. Instead use a
+# directory that only exists when the partition (if any) is mounted.
+BORG_REPO=/opt/verylarge/backup/borg
+
+# *** INIT ***
+
+# See https://borgbackup.readthedocs.io/en/stable/usage/init.html#encryption-modes
+# Possible values:
+#   none                : No encryption and no authentication. Use SHA256 as
+#                         chunk ID hash.
+#   repokey             : Use AES-CTR-256 for encryption and HMAC-SHA256 for
+#                         authentication in an encrypt-then-MAC (EtM)
+#                         construction. The chunk ID hash is HMAC-SHA256 as
+#                         well (with a separate key).
+#   keyfile             : Idem.
+#   repokey-blake2      : Use BLAKE2b-256 instead of HMAC-SHA256 for authenti-
+#                         cation. The chunk ID hash is a keyed BLAKE2b-256 hash.
+#   keyfile-blake2      : Idem.
+#   authenticated       : Use no encryption, but authenticates repository
+#                         contents through the same HMAC-SHA256 hash as the
+#                         repokey and keyfile modes (it uses it as the chunk
+#                         ID hash). The key is stored like repokey.
+#   authenticated-blake2: Like authenticated, but uses the keyed BLAKE2b-256
+#                         hash from the other blake2 modes.
+ENCRYPTION_MODE=none
+
+# *** CONFIG ***
+
+# See https://borgbackup.readthedocs.io/en/stable/quickstart.html#important-note-about-free-space
+ADDITIONAL_FREE_SPACE=2G
+

@@ -1,0 +1,10 @@
+# The root path.
+R /usr/src
+
+# Subdirectories that we don't want to backup.
+
+# File patterns we don't want to backup.
+-**/*.o
+-**/*.a
+-**/*.so
+-**/*.so.*

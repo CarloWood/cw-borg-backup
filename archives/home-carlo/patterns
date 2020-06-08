@@ -1,0 +1,25 @@
+# "sh:" pattern style is the default, so the following line is not needed:
+P sh
+# The root path.
+R /home/carlo
+
+# Subdirectories that we don't want to backup.
+!pp:/home/carlo/.local/share/baloo
+!pp:/home/carlo/.local/share/RecentDocuments
+!pp:/home/carlo/.local/share/TelegramDesktop/tdata/user_data/media_cache
+!pp:/home/carlo/.cache
+!pp:/home/carlo/.log
+!pp:/home/carlo/.config/discord/Cache
+!**/*-objdir
+!**/.deps/
+!**/.libs/
+!**/autom4te.cache/
+!**/GPUCache/
+
+# File patterns we don't want to backup.
+!pf:/home/carlo/.local/share/sddm/xorg-session.log
+-**/*.o
+-**/*.a
+-**/*.so
+-**/*.so.*
+-**/troep*
