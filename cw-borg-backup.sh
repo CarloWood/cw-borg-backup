@@ -55,5 +55,7 @@ for archive in $(find /etc/borg-backup/archives -follow -mindepth 1 -maxdepth 1 
   echo "Backing up $archive..."
   /usr/bin/borg create --noatime --exclude-caches \
     --patterns-from /etc/borg-backup/archives/$archive/patterns \
-    "::$HOSTNAME-$archive-{now:%Y%m%d-%H%M%S}"
+    "::{hostname}-$archive-{now:%Y%m%d-%H%M%S}"
+  echo "Pruning $archive..."
+  /usr/bin/borg prune -v --list --prefix "{hostname}-$archive-" --keep-daily=7 --keep-weekly=4 --keep-monthly=12 --keep-yearly=-1
 done
